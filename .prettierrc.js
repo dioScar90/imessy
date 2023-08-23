@@ -6,4 +6,4 @@ module.exports = {
   quoteProps: 'consistent',
   printWidth: 80,
   semi: false,
-};
+}
