@@ -1,10 +1,10 @@
-import Button from "@/components/ui/Button";
-import { FC } from "react";
+import Button from '@/components/ui/Button'
+import { FC } from 'react'
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
-  return <Button>hello</Button>;
-};
+  return <Button>hello</Button>
+}
 
-export default page;
+export default page

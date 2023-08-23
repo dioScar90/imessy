@@ -1,5 +1,5 @@
-import Button from "@/components/ui/Button"
+import Button from '@/components/ui/Button'
 
 export default async function Home() {
-  return <Button variant="ghost">Hello!</Button>
+  return <Button variant='ghost'>Hello!</Button>
 }
