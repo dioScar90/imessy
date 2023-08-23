@@ -17,3 +17,6 @@ For authentication:
 
 For authOptions:
 - npm install @next-auth/upstash-redis-adapter
+
+For toast notification:
+- npm install react-hot-toast
