@@ -20,3 +20,7 @@ For authOptions:
 
 For toast notification:
 - npm install react-hot-toast
+
+For generate supersecret key, type in CMD:
+- openssl genrsa 2048 *(not sure if does it run in Ubuntu)*
+This will enable the **NEXTAUTH_SECRET** variable in the *env* file.
