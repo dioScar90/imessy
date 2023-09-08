@@ -4,6 +4,6 @@ module.exports = {
   arrowParens: 'avoid',
   singleQuote: true,
   quoteProps: 'consistent',
-  printWidth: 80,
+  printWidth: 100, // 80,
   semi: false,
 }
