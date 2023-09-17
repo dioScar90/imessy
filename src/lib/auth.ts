@@ -7,6 +7,9 @@ function getGoogleCredentials() {
   const clientId = process.env.GOOGLE_CLIENT_ID
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET
 
+  console.log('clientId\t\t=> ' + clientId)
+  console.log('clientSecret\t=> ' + clientSecret)
+
   if (!clientId || clientId.length === 0) {
     throw new Error('Missing GOOGLE_CLIENT_ID')
   }
@@ -15,16 +18,19 @@ function getGoogleCredentials() {
     throw new Error('Missing GOOGLE_CLIENT_SECRET')
   }
 
+  console.log('clientIdAfter\t\t=> ' + clientId)
+  console.log('clientSecretAfter\t=> ' + clientSecret)
+
   return { clientId, clientSecret }
 }
 
 export const authOptions: NextAuthOptions = {
   adapter: UpstashRedisAdapter(db),
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt'
   },
   pages: {
-    signIn: '/login',
+    signIn: '/login'
   },
   providers: [
     GoogleProvider({
@@ -33,7 +39,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt ({ token, user }) {
       const dbUser = (await db.get(`user:${token.id}`)) as User | null
 
       if (!dbUser) {
@@ -60,6 +66,6 @@ export const authOptions: NextAuthOptions = {
     },
     redirect() {
       return '/dashboard'
-    },
-  },
+    }
+  }
 }
