@@ -72,6 +72,26 @@ const prepararItensEOrdenar = (thClicado: HTMLTableCellElement, desc: boolean = 
   thClicado.classList.add('bg-primary')
 }
 
+const removeFontAwesome = (cellIndex: number, tr: HTMLTableRowElement) => {
+  const todosTh: NodeListOf<HTMLTableCellElement> = tr.querySelectorAll(':scope > th')
+  const asc = todosTh[cellIndex].toggleAttribute('data-order-by')
+  
+  todosTh.forEach(th => {
+    const iFontAwesome = th.querySelector('[data-icon-sort]')
+    th.classList.remove('bg-primary')
+
+    iFontAwesome?.remove()
+
+    if (th.cellIndex !== cellIndex) {
+      th.removeAttribute('data-order-by')
+    }
+  })
+
+  const desc = !asc
+
+  return desc
+}
+
 export const ordenarTabelaPorDeterminadaColuna = (e: PointerEvent<HTMLTableCellElement>) => {
   const thClicado = e.currentTarget
   const tr = thClicado.closest('tr')
@@ -80,19 +100,29 @@ export const ordenarTabelaPorDeterminadaColuna = (e: PointerEvent<HTMLTableCellE
     return
   }
 
-  const todosTh: NodeListOf<HTMLTableCellElement> = tr.querySelectorAll(':scope > th')
-  const asc = todosTh[thClicado.cellIndex].toggleAttribute('data-order-by')
+  const cellIndex = thClicado.cellIndex
+  const desc = removeFontAwesome(cellIndex, tr)
+  
+  const table = thClicado.closest('table')
+  const tbody = table?.querySelector('tbody')
 
-  todosTh.forEach(th => {
-    const iFontAwesome = th.querySelector('[data-icon-sort]')
-    th.classList.remove('bg-primary')
+  if (!table || !tbody) {
+    return
+  }
 
-    iFontAwesome?.remove()
+  // const cellIndex = thClicado.cellIndex // + 1
+  // const selector = ':is(td, th):nth-child(' + n + ')'
 
-    if (th.cellIndex !== thClicado.cellIndex) {
-      th.removeAttribute('data-order-by')
-    }
-  })
+  const tbodyChildren = tbody.querySelectorAll<HTMLTableRowElement>(':scope > tr')
 
-  prepararItensEOrdenar(thClicado, !asc)
+  const linhasClonadas = [...tbodyChildren].map(row => row.cloneNode(true)) as HTMLTableRowElement[]
+
+  linhasClonadas.sort((row1, row2) => ordenarItens({ row1, row2, cellIndex, desc }))
+  tbody.replaceChildren(...linhasClonadas)
+
+  const tipoDoIcone = desc === true ? 'down' : 'up'
+  const spanDoIcone = `<span class="fas fa-sort-amount-${tipoDoIcone}-alt" data-icon-sort>&nbsp;</span>`
+  thClicado.insertAdjacentHTML('afterbegin', spanDoIcone)
+
+  thClicado.classList.add('bg-primary')
 }

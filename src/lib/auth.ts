@@ -6,10 +6,7 @@ import GoogleProvider from 'next-auth/providers/google'
 function getGoogleCredentials() {
   const clientId = process.env.GOOGLE_CLIENT_ID
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET
-
-  console.log('clientId\t\t=> ' + clientId)
-  console.log('clientSecret\t=> ' + clientSecret)
-
+  
   if (!clientId || clientId.length === 0) {
     throw new Error('Missing GOOGLE_CLIENT_ID')
   }
@@ -17,10 +14,7 @@ function getGoogleCredentials() {
   if (!clientSecret || clientSecret.length === 0) {
     throw new Error('Missing GOOGLE_CLIENT_SECRET')
   }
-
-  console.log('clientIdAfter\t\t=> ' + clientId)
-  console.log('clientSecretAfter\t=> ' + clientSecret)
-
+  
   return { clientId, clientSecret }
 }
 
@@ -46,7 +40,7 @@ export const authOptions: NextAuthOptions = {
         token.id = user!.id
         return token
       }
-
+      
       return {
         id: dbUser.id,
         name: dbUser.name,
