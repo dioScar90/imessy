@@ -55,6 +55,7 @@ const AddFriendButton: FC<AddFriendButtonProps> = () => {
       <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
         Add friend by email
       </label>
+
       <div className="mt-2 flex gap-4">
         <input
           {...register('email')}
@@ -63,11 +64,12 @@ const AddFriendButton: FC<AddFriendButtonProps> = () => {
           placeholder="you@example.com"
         />
         <Button>Add</Button>
-        <p className="mt-1 text-sm text-red-600">{errors.email?.message}</p>
-        {showSuccessState ? (
-          <p className="mt-1 text-sm text-green-600">Friend request sent!</p>
-        ) : null}
       </div>
+      
+      <p className="mt-1 text-sm text-red-600">{errors.email?.message}</p>
+      {showSuccessState ? (
+        <p className="mt-1 text-sm text-green-600">Friend request sent!</p>
+      ) : null}
     </form>
   )
 }
