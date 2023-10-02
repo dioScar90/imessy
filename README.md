@@ -41,3 +41,4 @@ For **production** (looks like):
 For generate supersecret key, type in CMD:
 - openssl genrsa 2048 *(not sure if it runs in Ubuntu)*
 This will enable the **NEXTAUTH_SECRET** variable in the *env* file.
+
