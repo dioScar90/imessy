@@ -20,13 +20,16 @@ const page = async () => {
 
   const incomingFriendRequests = await Promise.all(
     incomingSenderIds.map(async senderId => {
-      const sender = (await fetchRedis('get', `user:${senderId}`)) as User
+      const senderAsString = (await fetchRedis('get', `user:${senderId}`)) as string
+      const sender = JSON.parse(senderAsString) as User
+      
       return {
         senderId,
         senderEmail: sender.email,
       }
     })
   )
+  
   return (
     <main className="pt-8">
       <h1 className="font-bold text-5xl mb-8">Add a friend</h1>
