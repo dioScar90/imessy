@@ -31,6 +31,12 @@ For handling forms:
 For useful Textarea:
 - npm install react-textarea-autosize
 
+For id generation:
+- npm install nanoid
+
+For date:
+- npm install date-fns
+
 ### NEXTAUTH_URL && NEXTAUTH_SECRET
 If environment variable **NEXTAUTH_URL** is missing, you must set it in your *.env* or *.env.local* file. Note: On Vercel deployments, the VERCEL_URL environment variable will be read, so you won't need to define NEXTAUTH_URL.
 Here's NEXTAUTH_URL types, if necessary:
