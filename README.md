@@ -36,7 +36,7 @@ For id generation:
 
 For date:
 - npm install date-fns
-
+ 
 For push notifications;
 - npm install pusher pusher-js
 ...and then create or login with your account in the [Pusher WebSite](https://pusher.com). Create your project and then go to *App Keys*. There are everything you need. Paste these variables in you *.env.local* and rename this way:
