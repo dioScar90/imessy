@@ -30,7 +30,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({ incomingFriendRequests, sessi
       pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:incoming_friend_requests`))
       pusherClient.bind(`incoming_friend_requests`, friendRequestHandler)
     }
-  }, [])
+  }, [sessionId])
 
   const accceptFriend = async (senderId: string) => {
     await axios.post('/api/friends/accept', { id: senderId })
