@@ -11,16 +11,10 @@ import { fetchRedis } from '@/app/helpers/redis'
 import { getFriendsByUserId } from '@/app/helpers/get-friends-by-user-id'
 import SidebarChatList from '@/components/SidebarChatList'
 import MobileChatLayout from '@/components/MobileChatLayout'
+import { SidebarOption } from '@/types/typings'
 
 interface LayoutProps {
   children: ReactNode
-}
-
-interface SidebarOption {
-  id: number
-  name: string
-  href: string
-  Icon: Icon
 }
 
 const sidebarOptions: SidebarOption[] = [
@@ -47,8 +41,13 @@ const Layout = async ({ children }: LayoutProps) => {
 
   return (
     <div className="w-full flex h-screen">
-      <div className='md:hidden'>
-        <MobileChatLayout />
+      <div className="md:hidden">
+        <MobileChatLayout
+          friends={friends}
+          session={session}
+          sideBarOptions={sidebarOptions}
+          unseenRequestCount={unseenRequestCount}
+        />
       </div>
 
       <div className="hidden md:flex h-full w-full max-w-sm grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
@@ -125,9 +124,7 @@ const Layout = async ({ children }: LayoutProps) => {
         </nav>
       </div>
 
-      <aside className='max-h-screen container py-16 md:py-12 w-full'>
-        {children}
-      </aside>
+      <aside className="max-h-screen container py-16 md:py-12 w-full">{children}</aside>
     </div>
   )
 }
