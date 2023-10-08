@@ -30,8 +30,8 @@ export async function POST(req: Request) {
       return new Response('Unauthorized', { status: 401 })
     }
 
-    const rowSender = (await fetchRedis('get', `user:${session.user.id}`)) as string
-    const sender = JSON.parse(rowSender) as User
+    const senderRaw = (await fetchRedis('get', `user:${session.user.id}`)) as string
+    const sender = JSON.parse(senderRaw) as User
 
     const timestamp = Date.now()
     const messageData: Message = {

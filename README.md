@@ -1,5 +1,7 @@
 # iMessy
 
+To clear database, type *flushall* on the **Upstash CLI**.
+
 For button?:
 - npm i class-variance-authority
 
