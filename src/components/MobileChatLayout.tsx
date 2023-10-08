@@ -1,3 +1,5 @@
+'use client'
+
 import { FC, Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Menu, X } from 'lucide-react'
