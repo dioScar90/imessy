@@ -55,6 +55,9 @@ Modules we must install I don't know why at all:
 For components loading:
 - npm install react-loading-skeleton
 
+For Headless UI:
+- npm i @headlessui/react
+
 ### NEXTAUTH_URL && NEXTAUTH_SECRET
 If environment variable **NEXTAUTH_URL** is missing, you must set it in your *.env* or *.env.local* file. Note: On Vercel deployments, the VERCEL_URL environment variable will be read, so you won't need to define NEXTAUTH_URL.
 Here's NEXTAUTH_URL types, if necessary:
